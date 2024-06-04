@@ -3,6 +3,9 @@
  *
  */
 
+#ifndef __UCIPLIB_ICMP_H__
+#define __UCIPLIB_ICMP_H__
+
 #include <stdint.h>
 
 enum IcmpCodeType
@@ -22,3 +25,5 @@ typedef struct __attribute__((__packed__)) IcmpStruct
     uint8_t Code;
     uint16_t CheckSum;
 } IcmpStruct;
+
+#endif // __UCIPLIB_ICMP_H__

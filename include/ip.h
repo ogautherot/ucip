@@ -3,6 +3,9 @@
  * Protocol field in Ethernet packet should be 0x800
  */
 
+#ifndef __UCIPLIB_IP_H__
+#define __UCIPLIB_IP_H__
+
 #include <stdint.h>
 
 /** Local variable store
@@ -31,6 +34,12 @@ typedef struct __attribute__((packed)) IpHeaderStruct
     uint16_t HeaderChecksum;          // Relatively simple sum
     uint8_t SourceAddress[4];         // IP address
     uint8_t DestinationAddress[4];    // IP address
+    uint8_t Payload[];
 } IpHeaderStruct;
 
 extern uint8_t NullIpAddr[4];
+
+int parse_ip_frame(void *ptr);
+int get_ip_checksum(void *hdr, int len_in_bytes);
+
+#endif // __UCIPLIB_IP_H__

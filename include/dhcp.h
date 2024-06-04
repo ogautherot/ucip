@@ -3,6 +3,9 @@
  *
  */
 
+#ifndef __UCIPLIB_DHCP_H__
+#define __UCIPLIB_DHCP_H__
+
 #include <stdint.h>
 
 #include "ip.h"
@@ -50,3 +53,5 @@ typedef struct __attribute__((__packed__)) DhcpStruct
     uint8_t file[128];    // Boot file name
     uint8_t options[340]; // Optional
 } DhcpStruct;
+
+#endif // __UCIPLIB_DHCP_H__

@@ -3,6 +3,9 @@
  * Protocol field in Ethernet packet should be 0x0806
  */
 
+#ifndef __UCIPLIB_ARP_H__
+#define __UCIPLIB_ARP_H__
+
 #include <stdint.h>
 
 #include "ip.h"
@@ -36,3 +39,5 @@ typedef struct __attribute__((__packed__)) ArpFrameStruct
     uint8_t MacAddrDest[6];     // Source MAC address
     uint8_t NetworkAddrDest[4]; // Source IP address
 } ArpFrameStruct;
+
+#endif // __UCIPLIB_ARP_H__

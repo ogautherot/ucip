@@ -2,6 +2,9 @@
  *
  */
 
+#ifndef __UCIPLIB_TCP_H__
+#define __UCIPLIB_TCP_H__
+
 #include <stdint.h>
 
 typedef struct __attribute__((__packed__)) TcpStruct
@@ -24,4 +27,7 @@ typedef struct __attribute__((__packed__)) TcpStruct
     uint16_t Window; // For sliding windows
     uint16_t HeaderChecksum;
     uint16_t Urgent; // Not supported, should be null
+    uint8_t Payload[];
 } TcpStruct;
+
+#endif // __UCIPLIB_TCP_H__
