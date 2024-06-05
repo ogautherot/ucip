@@ -8,14 +8,31 @@
 
 #include <stdint.h>
 
+#include "defs.h"
+
 /** Local variable store
  *
  */
+typedef struct __attribute__((__packed__)) ArpCacheStruct
+{
+    uint32_t IpAddr;
+    uint8_t Mac[6];
+    uint8_t reserved[2]; // Padding
+} ArpCacheStruct;
+
 typedef struct __attribute__((__packed__)) LocalIpVarStruct
 {
     uint8_t IpAddr[4]; // Local IP address
     uint8_t Mac[6];    // Ethernet MAC addres, may be removed in the future
 } LocalIpVarStruct;
+
+/* ******** Protocol structure ******** */
+
+static inline CopyMac(void *dest, void *src)
+{
+    *RAW_POINTER(uint32_t, dest, 0) = *RAW_POINTER(uint32_t, src, 0);
+    *RAW_POINTER(uint16_t, dest, 4) = *RAW_POINTER(uint16_t, src, 4);
+}
 
 /** IP packet header
  *
