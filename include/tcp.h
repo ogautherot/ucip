@@ -30,4 +30,6 @@ typedef struct __attribute__((__packed__)) TcpStruct
     uint8_t Payload[];
 } TcpStruct;
 
+int parse_tcp(void *p, int len);
+
 #endif // __UCIPLIB_TCP_H__

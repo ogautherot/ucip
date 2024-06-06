@@ -3,9 +3,15 @@
  */
 
 #include "ip.h"
+#include "icmp.h"
+#include "tcp.h"
+#include "udp.h"
 
 uint8_t NullIpAddr[4] = {0, 0, 0, 0};
 
+/**
+ *
+ */
 int get_ip_checksum(void *ptr, int len_in_bytes)
 {
     uint16_t *hdr;
@@ -20,6 +26,9 @@ int get_ip_checksum(void *ptr, int len_in_bytes)
     return sum;
 }
 
+/**
+ *
+ */
 int parse_ip_frame(void *ptr)
 {
     int ret = 0;
@@ -44,11 +53,11 @@ int parse_ip_frame(void *ptr)
         switch (hdr->Protocol)
         {
         case 1: // ICMP
-            break;
+            return parse_icmp(hdr->Payload, len);
         case 6: // TCP
-            break;
+            return parse_tcp(hdr->Payload, len);
         case 17: // UDP
-            break;
+            return parse_udp(hdr->Payload, len);
         }
     }
     return ret;

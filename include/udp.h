@@ -16,4 +16,6 @@ typedef struct __attribute__((__packed__)) UdpStruct
     uint8_t Payload[];
 } UdpStruct;
 
+int parse_udp(void *p, int len);
+
 #endif // __UCIPLIB_UDP_H__

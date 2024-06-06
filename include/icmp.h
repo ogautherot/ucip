@@ -26,4 +26,6 @@ typedef struct __attribute__((__packed__)) IcmpStruct
     uint16_t CheckSum;
 } IcmpStruct;
 
+int parse_icmp(void *p, int len);
+
 #endif // __UCIPLIB_ICMP_H__

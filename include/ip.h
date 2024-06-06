@@ -28,7 +28,7 @@ typedef struct __attribute__((__packed__)) LocalIpVarStruct
 
 /* ******** Protocol structure ******** */
 
-static inline CopyMac(void *dest, void *src)
+static inline void CopyMac(void *dest, void *src)
 {
     *RAW_POINTER(uint32_t, dest, 0) = *RAW_POINTER(uint32_t, src, 0);
     *RAW_POINTER(uint16_t, dest, 4) = *RAW_POINTER(uint16_t, src, 4);
