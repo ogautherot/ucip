@@ -14,16 +14,29 @@ uint8_t NullIpAddr[4] = {0, 0, 0, 0};
  */
 int get_ip_checksum(void *ptr, int len_in_bytes)
 {
-    uint16_t *hdr;
-    uint16_t sum = 0;
+    uint16_t *hdr = (uint16_t *)ptr;
+    uint32_t sum = 0;
 
-    while (len_in_bytes > 0)
+    while (len_in_bytes > 1)
     {
         sum += *hdr;
         hdr++;
         len_in_bytes -= 2;
     }
-    return sum;
+
+    if (1 >= len_in_bytes)
+    {
+        if (1 == htons(1))
+        {
+            sum += *hdr & 0xff00;
+        }
+        else
+        {
+            sum += (*hdr & 0xff) << 8;
+        }
+    }
+
+    return ~((sum & 0xffff) + (sum >> 16));
 }
 
 /**
